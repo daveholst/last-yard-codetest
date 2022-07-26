@@ -6,7 +6,7 @@ import { findProducts } from './findProducts'
 describe('findProducts returns correct products', () => {
     it('when it takes an include value', () => {
         const result = findProducts({ products: mockProductData, include: ['red'] })
-        expect(result).eq([
+        expect(result).toEqual([
             {
                 name: 'T-Shirt',
                 codes: ['A21313'],
@@ -16,7 +16,7 @@ describe('findProducts returns correct products', () => {
 
     it('when it takes multiple include values', () => {
         const result = findProducts({ products: mockProductData, include: ['green', 'medium'] })
-        expect(result).eq([
+        expect(result).toEqual([
             {
                 name: 'T-Shirt',
                 codes: ['A21312'],
@@ -27,14 +27,18 @@ describe('findProducts returns correct products', () => {
             },
             {
                 name: 'Socks',
-                codes: ['A21412'],
+                codes: ['A21412', 'A21319'],
+            },
+            {
+                name: 'Jacket',
+                codes: ['A21501'],
             },
         ])
     })
 
     it('when it takes an exclude value', () => {
         const result = findProducts({ products: mockProductData, exclude: ['green'] })
-        expect(result).eq([
+        expect(result).toEqual([
             {
                 name: 'T-Shirt',
                 codes: ['A21313', 'A21311'],
@@ -56,10 +60,10 @@ describe('findProducts returns correct products', () => {
 
     it('takes multiple exclude values', () => {
         const result = findProducts({ products: mockProductData, exclude: ['green', 'small'] })
-        expect(result).eq([
+        expect(result).toEqual([
             {
                 name: 'T-Shirt',
-                codes: ['A21312', 'A21311'],
+                codes: ['A21313', 'A21311'],
             },
             {
                 name: 'Jacket',
@@ -74,7 +78,7 @@ describe('findProducts returns correct products', () => {
             include: ['small'],
             exclude: ['green'],
         })
-        expect(result).eq([
+        expect(result).toEqual([
             {
                 name: 'Pants',
                 codes: ['A21317'],
@@ -94,14 +98,14 @@ describe('findProducts returns correct products', () => {
         const result = findProducts({
             products: mockProductData,
         })
-        expect(result).eq([
+        expect(result).toEqual([
             {
                 name: 'T-Shirt',
                 codes: ['A21313', 'A21312', 'A21311'],
             },
             {
                 name: 'Pants',
-                codes: ['A21455', 'A21319'],
+                codes: ['A21455', 'A21317'],
             },
             {
                 name: 'Socks',
@@ -109,7 +113,7 @@ describe('findProducts returns correct products', () => {
             },
             {
                 name: 'Jacket',
-                codes: ['A21502', 'A21502'],
+                codes: ['A21502', 'A21501'],
             },
         ])
     })
